@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:unicode_test_app/core/app/flavors.dart';
 
-import '../../features/screens/home/view/home_screen.dart';
+import '../../features/screens/product/view/product_screen.dart';
+
 
 class App extends StatelessWidget {
   const App({super.key});

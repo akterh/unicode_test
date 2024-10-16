@@ -39,9 +39,11 @@ dependencies:
   injectable:
   injectable_generator:
   easy_localization:
-  connectivity_plus:
+  connectivity_plus: ^2.0.5
   dartz:
   equatable:
+  persistent_shopping_cart: ^0.0.7
+  path_provider_android: ^2.2.12
 
 
 

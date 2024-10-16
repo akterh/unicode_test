@@ -87,7 +87,7 @@ class GetContext {
 // Helper method to get the widget for a given route name
   static Widget _getPage(String routeName, dynamic arguments) {
     switch (routeName) {
-      case '/home':
+      case '/product':
         return DashboardScreen(arguments: arguments);
       default:
         return const DashboardScreen(arguments: null,);

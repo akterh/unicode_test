@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:unicode_test_app/core/app/app_dependency.dart';
 import 'package:unicode_test_app/core/app/app_preference.dart';
 import 'package:unicode_test_app/data/network/api_urls.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +28,8 @@ enum Method { post, get, put, delete, patch }
 class ApiClient {
   final AppPreferences _appPreferences;
   final Dio _dio;
-  final InternetConnectionChecker _internetConnectionChecker =
-      InternetConnectionChecker();
+  // final InternetConnectionChecker _internetConnectionChecker =
+  //     InternetConnectionChecker();
   bool _isDialogShowing = false;
 
   ApiClient(this._dio) : _appPreferences = instance.get<AppPreferences>() {
@@ -41,24 +41,24 @@ class ApiClient {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          if (!await _internetConnectionChecker.hasInternetConnection()) {
-            log("No internet connection available.");
-            /*showCustomSnackBar(
-                context: GetContext.context,
-                message: AppStrings.noInternetError.tr());
-            _isDialogShowing = true;
-            if (_isDialogShowing) {
-              _showNoInternetDialog(() {
-                _retryRequest(options, handler);
-              });
-            }
-            handler.reject(DioError(
-              requestOptions: options,
-              error: AppStrings.noInternetError.tr(),
-              // type: DioErrorType.connectTimeout,
-            ));*/
-            return;
-          }
+          // if (!await _internetConnectionChecker.hasInternetConnection()) {
+          //   log("No internet connection available.");
+          //   /*showCustomSnackBar(
+          //       context: GetContext.context,
+          //       message: AppStrings.noInternetError.tr());
+          //   _isDialogShowing = true;
+          //   if (_isDialogShowing) {
+          //     _showNoInternetDialog(() {
+          //       _retryRequest(options, handler);
+          //     });
+          //   }
+          //   handler.reject(DioError(
+          //     requestOptions: options,
+          //     error: AppStrings.noInternetError.tr(),
+          //     // type: DioErrorType.connectTimeout,
+          //   ));*/
+          //   return;
+          // }
 
           final headers = await _buildHeaders();
           options.headers.addAll(headers);
@@ -209,26 +209,26 @@ class ApiClient {
   }*/
 }
 
-class InternetConnectionChecker {
-  final String testUrl = 'https://www.google.com';
+// class InternetConnectionChecker {
+//   final String testUrl = 'https://www.google.com';
 
-  Future<bool> hasInternetConnection() async {
-    var connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult != ConnectivityResult.none) {
-      return await _checkInternetAccess();
-    }
-    return false;
-  }
-
-  Future<bool> _checkInternetAccess() async {
-    try {
-      final response =
-          await http.get(Uri.parse(testUrl)).timeout(Duration(seconds: 10));
-      return response.statusCode == 200;
-    } on SocketException catch (_) {
-      return false;
-    } on TimeoutException catch (_) {
-      return false;
-    }
-  }
-}
+//   Future<bool> hasInternetConnection() async {
+//     var connectivityResult = await Connectivity().checkConnectivity();
+//     if (connectivityResult != ConnectivityResult.none) {
+//       return await _checkInternetAccess();
+//     }
+//     return false;
+//   }
+//
+//   Future<bool> _checkInternetAccess() async {
+//     try {
+//       final response =
+//           await http.get(Uri.parse(testUrl)).timeout(Duration(seconds: 10));
+//       return response.statusCode == 200;
+//     } on SocketException catch (_) {
+//       return false;
+//     } on TimeoutException catch (_) {
+//       return false;
+//     }
+//   }
+// }
